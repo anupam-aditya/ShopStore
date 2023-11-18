@@ -1,0 +1,13 @@
+.App {
+	text-align: -webkit-center;
+	font-family: "Poppins", sans-serif;
+	color: #343434;
+	margin: 0 30px 20px;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+	flex: 1 0 21%;
+	max-width: 332px;
+}
