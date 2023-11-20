@@ -30,8 +30,8 @@ function HomePage() {
 		const scrollHeight = document.documentElement.scrollHeight;
 		const scrollTop = document.documentElement.scrollTop;
 		const clientHeight = document.documentElement.clientHeight;
-
-		if (scrollTop + clientHeight === scrollHeight) {
+		console.log(scrollHeight, scrollTop, clientHeight);
+		if (scrollTop + clientHeight + 20 >= scrollHeight) {
 			loadMoreData();
 		}
 	};
