@@ -4,17 +4,21 @@ import "./Navbar.css";
 import { GlobalContext } from "../../context/GlobalState";
 
 const Navbar = () => {
-	const { cart } = useContext(GlobalContext);
+	const { cart, changeFilter } = useContext(GlobalContext);
+	const updateHandler = (item) => {
+		const filter = item.target.innerHTML;
+		changeFilter(filter);
+	};
 	return (
 		<div className="navbar">
 			<Link to="/">
 				<h2>ShopStore</h2>
 			</Link>
 			<ul className="navbar-ul">
-				<li>Womens</li>
-				<li>Mens</li>
-				<li>Clothing</li>
-				<li>Brands</li>
+				<li onClick={updateHandler}>Women</li>
+				<li onClick={updateHandler}>Men</li>
+				<li onClick={updateHandler}>Clothing</li>
+				<li onClick={updateHandler}>Shoes</li>
 				<Link to="/cart">
 					<li>
 						&#128722;{" "}

@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
 import ItemList from "../itemList/ItemList";
+import React, { useEffect, useState, useContext } from "react";
+import { GlobalContext } from "../../context/GlobalState";
 
 function HomePage() {
+	const { filter } = useContext(GlobalContext);
 	const [page, setPage] = useState(1);
 	const [items, setItems] = useState([]);
 	const [loading, setLoading] = useState(false);
-
+	// console.log(filter);
 	const loadMoreData = async () => {
 		if (loading) return;
 
@@ -30,7 +32,7 @@ function HomePage() {
 		const scrollHeight = document.documentElement.scrollHeight;
 		const scrollTop = document.documentElement.scrollTop;
 		const clientHeight = document.documentElement.clientHeight;
-		console.log(scrollHeight, scrollTop, clientHeight);
+		// console.log(scrollHeight, scrollTop, clientHeight);
 		if (scrollTop + clientHeight + 20 >= scrollHeight) {
 			loadMoreData();
 		}
@@ -55,7 +57,13 @@ function HomePage() {
 
 	return (
 		<section>
-			<ItemList items={items} />
+			<ItemList
+				results={
+					filter === "All"
+						? items
+						: items.filter((item) => item.tag.includes(filter))
+				}
+			/>
 			{loading && <p>Loading...</p>}
 		</section>
 	);
