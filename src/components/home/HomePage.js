@@ -15,7 +15,7 @@ function HomePage() {
 
 		try {
 			const response = await fetch(
-				`http://localhost:5001/api/v1/getProducts/${page}`
+				`https://spotless-khakis-bull.cyclic.app/api/v1/getProducts/${page}`
 			);
 
 			const data = await response.json();
