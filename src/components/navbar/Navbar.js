@@ -1,13 +1,20 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./Navbar.css";
 import { GlobalContext } from "../../context/GlobalState";
 
 const Navbar = () => {
+	const navigate = useNavigate();
+	const location = useLocation();
 	const { cart, changeFilter } = useContext(GlobalContext);
 	const updateHandler = (item) => {
 		const filter = item.target.innerHTML;
 		changeFilter(filter);
+		if (
+			location.pathname.includes("/orders") ||
+			location.pathname.includes("/cart")
+		)
+			navigate("/");
 	};
 	return (
 		<div className="navbar">
@@ -21,16 +28,12 @@ const Navbar = () => {
 				<li onClick={updateHandler}>Shoes</li>
 				<Link to="/cart">
 					<li>
-						&#128722;{" "}
-						<span className="card-count" style={{ color: "red" }}>
-							({cart.length})
-						</span>
+						&#128722; <span className="card-count">({cart.length})</span>
 					</li>
 				</Link>
 				<Link to="/orders">
 					<li>Orders</li>
 				</Link>
-				<button className="nav-btn">Hi, John</button>
 			</ul>
 		</div>
 	);
